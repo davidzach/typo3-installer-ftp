@@ -10,9 +10,9 @@ $wget = function (string $address, string $filename) {
 };
 
 if (file_exists($filename)) {
-    echo "Die Datei $filename existiert";
+    echo "The file $filename exists.";
 } else {
-    echo "Die Datei $filename existiert nicht und wird auf den Server geladen";
+    echo "The file $filename does not exist and is loaded on the server.";
     $wget($address, $filename);
 }
 
@@ -23,11 +23,13 @@ $buildSymlinks = function (string $typo3Version) {
     symlink('typo3_src-' . $typo3Version, 'typo3_src');
     symlink('typo3_src/typo3', 'typo3');
     symlink('typo3_src/index.php', 'index.php');
+    echo "The symlinks have been created.";
 };
 
 try {
     $phar = new \PharData($filename);
     $phar->extractTo(__DIR__);
+    echo "The file $filename was extracted.";
 } catch (Exception $e) {
     echo $e->getMessage();
 }
